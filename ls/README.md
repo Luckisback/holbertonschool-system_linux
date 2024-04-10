@@ -1,5 +1,10 @@
 # <p align="center">![Image](https://github.com/fichier.png) </p>
 # <p align="center"> Project tasks </p>
+
+
+### Compilation
+
+gcc -Wall -Werror -Wextra -pedantic *.c -o hls
   
 ###  Tasks
 
