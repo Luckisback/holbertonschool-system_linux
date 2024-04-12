@@ -28,7 +28,7 @@ while ((entry = readdir(dir)) != NULL)
 {
 if (entry->d_name[0] != '.')
 {
-printf("%s  ", entry->d_name);
+printf("%s ", entry->d_name);
 }
 }
 printf("\n");
