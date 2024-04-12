@@ -24,6 +24,7 @@ exit(EXIT_FAILURE);
 }
 
 /*Ignore hidden files and directories*/
+
 while ((entry = readdir(dir)) != NULL)
 {
 if (entry->d_name[0] != '.')
