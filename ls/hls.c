@@ -2,7 +2,16 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-int main()
+
+/**
+ * main - This program opens the current directory with opendir("."),
+ * then browses each entry in this directory with readdir and displays
+ * the name of each entry with printf. Finally, it closes the directory
+ * with closedir
+ * Return: EXIT_SUCCESS
+ **/
+
+int main(void)
 {
 DIR *dir;
 struct dirent *entry;
@@ -13,14 +22,17 @@ if (dir == NULL)
 perror("opendir");
 exit(EXIT_FAILURE);
 }
-
+/*Ignore hidden files and directories*/
 while ((entry = readdir(dir)) != NULL)
 {
-printf("%s ", entry->d_name);
+if (entry->d_name[0] != '.')
+{
+printf("%s  ", entry->d_name);
 }
-printf("\n ");
+}
+printf("\n");
 
 closedir(dir);
 
-return EXIT_SUCCESS;
+return (EXIT_SUCCESS);
 }
