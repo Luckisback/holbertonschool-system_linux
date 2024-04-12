@@ -22,6 +22,7 @@ if (dir == NULL)
 perror("opendir");
 exit(EXIT_FAILURE);
 }
+
 /*Ignore hidden files and directories*/
 while ((entry = readdir(dir)) != NULL)
 {
