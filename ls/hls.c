@@ -1,27 +1,26 @@
-#include "hls.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <dirent.h>
 
-/*retrieve a directory argument, to list the contents.
-If no argument is given, then take the current directory*/
+int main()
+{
+DIR *dir;
+struct dirent *entry;
 
-int main(int argc, char *argv[])
+dir = opendir(".");
+if (dir == NULL)
 {
-const char *directory;
-
-if (argc == 1)
-{
-directory = ".";
-}
-else if (argc == 2)
-{
-directory = argv[1];
-}
-else
-{
-fprintf(stderr, "Usage: %s [directory]\n", argv[0]);
+perror("opendir");
 exit(EXIT_FAILURE);
 }
 
-hls(directory);
+while ((entry = readdir(dir)) != NULL)
+{
+printf("%s ", entry->d_name);
+}
+printf("\n ");
 
-return (EXIT_SUCCESS);
+closedir(dir);
+
+return EXIT_SUCCESS;
 }
