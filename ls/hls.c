@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dirent.h>
+#include <string.h>
 
-
-/**list_directory - descrption
- * dirname: description
- *
- */
-
+/**
+ * list_directory - Displays the names of entries in the given directory
+ * excluding "." and ".." directories, and hidden files.
+ * @dirname: The name of the directory to list.
+ **/
 void list_directory(const char *dirname)
 {
 DIR *dir;
@@ -23,21 +23,21 @@ exit(EXIT_FAILURE);
 
 while ((entry = readdir(dir)) != NULL)
 {
+/* Exclude "." and ".." directories */
+if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0)
+{
+
+/* Exclude hidden files starting with "." */
+if (entry->d_name[0] != '.')
+{
 printf("%s ", entry->d_name);
+}
+}
 }
 printf("\n");
 
 closedir(dir);
 }
-
-
-/**
- * main - imprimer un char
- * list_directory - description
- * @argc: argument count
- * @argv: argument values
- * return: EXIT_SUCCESS
- */
 
 int main(int argc, char *argv[])
 {
@@ -47,11 +47,12 @@ list_directory(".");
 }
 else
 {
-for (int i = 1; i < argc; i++)
+for (int i = 1; i < argc; i++) 
 {
 list_directory(argv[i]);
 }
 }
 
-return (EXIT_SUCCESS);
+return EXIT_SUCCESS;
 }
+
